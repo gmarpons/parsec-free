@@ -58,6 +58,9 @@ instance MonadTrans (ParsecDSL s u) where
 instance MonadIO m => MonadIO (ParsecDSL s u m) where
     liftIO = lift . liftIO
 
+instance (Semigroup a, Monad m) => Semigroup (ParsecDSL a () m a) where
+  (<>) = liftA2 (<>)
+
 data ParsecF s u m r
     = forall a. Plifted (P.ParsecT s u m a) (a -> r)
     | Preturn r

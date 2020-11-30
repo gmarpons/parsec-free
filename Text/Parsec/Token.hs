@@ -460,7 +460,7 @@ makeTokenParser languageDef = TokenParser
                                   <|> do{ char 'o'; number 8 octDigit }
                                   <|> do{ char 'x'; number 16 hexDigit }
                         ; if code > 0x10FFFF
-                          then fail "invalid escape sequence"
+                          then error "invalid escape sequence"
                           else return (toEnum (fromInteger code))
                         }
 

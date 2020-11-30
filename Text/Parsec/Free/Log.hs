@@ -178,7 +178,7 @@ indented b p = P.mkPT $ \s -> do
     appendLog Dedent
     return res
 
-evalLog :: (MonadIO m, P.Stream s m t)
+evalLog :: (MonadIO m, P.Stream s m t, Show t)
         => ParsecDSL s u m a -> LogParsecT s u m a
 evalLog = eval' attempt attemptShow indented
 
